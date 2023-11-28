@@ -22,9 +22,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "software_timer.h"
 #include "scheduler.h"
 #include "Toggle_led.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,6 +61,21 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+uint8_t temp = 0;
+uint32_t counter = 0;
+char str[30];
+void HAL_UART_RxCpltCallback ( UART_HandleTypeDef * huart ){
+	if(huart -> Instance == USART2 ){
+		HAL_UART_Receive_IT (& huart2 , &temp , 1);
+	}
+}
+void increase_timer(){
+	counter = counter + TICK;
+}
+void get_timer(){
+	HAL_UART_Transmit (& huart2 , ( void *) str , sprintf (str , "%ld\n" , counter ), 1000) ;
+}
 
 /* USER CODE END 0 */
 
@@ -105,6 +120,7 @@ int main(void)
   SCH_Add_Task(toggle_led3, 1000, 2000);
   SCH_Add_Task(toggle_led4, 1000, 4000);
   SCH_Add_Task(toggle_led5, 6000, 0);
+  SCH_Add_Task(get_timer, 1000, 1000);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
@@ -258,8 +274,8 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-	timerRun();
 	SCH_Update();
+	increase_timer();
 }
 /* USER CODE END 4 */
 

@@ -8,7 +8,7 @@
 #ifndef INC_SCHEDULER_H_
 #define INC_SCHEDULER_H_
 #include "stdint.h"
-
+extern int TICK;
 
 typedef struct {
 	// Pointer to the task (must be a ’ void ( void ) ’ function )
