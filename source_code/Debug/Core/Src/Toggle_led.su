@@ -1,0 +1,5 @@
+Toggle_led.c:9:6:toggle_led1	8	static
+Toggle_led.c:12:6:toggle_led2	8	static
+Toggle_led.c:15:6:toggle_led3	8	static
+Toggle_led.c:18:6:toggle_led4	8	static
+Toggle_led.c:21:6:toggle_led5	8	static

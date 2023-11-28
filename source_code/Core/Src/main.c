@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
 #include "scheduler.h"
+#include "Toggle_led.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,6 +100,11 @@ int main(void)
 
   /* Infinite loop */
   SCH_Init();
+  SCH_Add_Task(toggle_led1, 1000, 500);
+  SCH_Add_Task(toggle_led2, 1000, 1000);
+  SCH_Add_Task(toggle_led3, 1000, 2000);
+  SCH_Add_Task(toggle_led4, 1000, 4000);
+  SCH_Add_Task(toggle_led5, 6000, 0);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
