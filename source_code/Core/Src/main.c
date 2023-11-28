@@ -120,7 +120,7 @@ int main(void)
   SCH_Add_Task(toggle_led3, 1000, 2000);
   SCH_Add_Task(toggle_led4, 1000, 4000);
   SCH_Add_Task(toggle_led5, 6000, 0);
-  SCH_Add_Task(get_timer, 1000, 1000);
+  //SCH_Add_Task(get_timer, 1000, 1000);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
@@ -276,6 +276,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 	SCH_Update();
 	increase_timer();
+	get_timer();
 }
 /* USER CODE END 4 */
 
