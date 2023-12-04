@@ -15,14 +15,12 @@ void SCH_Init ( void ){
 void SCH_Update( void ){
 	for(int i = 0; i < SCH_MAX_TASKS; i++){
 		if(SCH_tasks_G[i].pTask != 0){
+			SCH_tasks_G[i].Delay--;
 			if(SCH_tasks_G[i].Delay == 0){
 				SCH_tasks_G[i].RunMe += 1;
 				if(SCH_tasks_G[i].Period > 0){
 					SCH_tasks_G[i].Delay = SCH_tasks_G[i].Period;
 				}
-			}
-			else {
-				SCH_tasks_G[i].Delay--;
 			}
 		}
 	}

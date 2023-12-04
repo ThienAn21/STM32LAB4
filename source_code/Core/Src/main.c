@@ -74,7 +74,7 @@ void increase_timer(){
 	counter = counter + TICK;
 }
 void get_timer(){
-	HAL_UART_Transmit (& huart2 , ( void *) str , sprintf (str , "%ld\n" , counter ), 1000) ;
+	HAL_UART_Transmit (& huart2 , ( void *) str , sprintf (str , "!%ld#\n" , counter ), 50) ;
 }
 
 /* USER CODE END 0 */
@@ -115,10 +115,10 @@ int main(void)
 
   /* Infinite loop */
   SCH_Init();
-  SCH_Add_Task(toggle_led1, 1000, 500);
+  SCH_Add_Task(toggle_led1, 500, 500);
   SCH_Add_Task(toggle_led2, 1000, 1000);
-  SCH_Add_Task(toggle_led3, 1000, 2000);
-  SCH_Add_Task(toggle_led4, 1000, 4000);
+  SCH_Add_Task(toggle_led3, 2000, 2000);
+  SCH_Add_Task(toggle_led4, 4000, 4000);
   SCH_Add_Task(toggle_led5, 6000, 0);
   //SCH_Add_Task(get_timer, 1000, 1000);
   /* USER CODE BEGIN WHILE */
